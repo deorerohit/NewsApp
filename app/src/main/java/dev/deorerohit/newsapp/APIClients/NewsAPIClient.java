@@ -1,4 +1,4 @@
-package dev.deorerohit.newsapp;
+package dev.deorerohit.newsapp.APIClients;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

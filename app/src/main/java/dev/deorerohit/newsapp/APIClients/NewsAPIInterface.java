@@ -1,9 +1,7 @@
-package dev.deorerohit.newsapp;
+package dev.deorerohit.newsapp.APIClients;
 
-import java.util.List;
-
+import dev.deorerohit.newsapp.Models.ResponseModel;
 import retrofit2.Call;
-import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

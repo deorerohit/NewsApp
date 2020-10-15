@@ -1,8 +1,10 @@
-package dev.deorerohit.newsapp;
+package dev.deorerohit.newsapp.Models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+import dev.deorerohit.newsapp.Models.Article;
 
 public class ResponseModel {
 

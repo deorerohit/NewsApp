@@ -1,4 +1,4 @@
-package dev.deorerohit.newsapp;
+package dev.deorerohit.newsapp.Models;
 
 import com.google.gson.annotations.SerializedName;
 
