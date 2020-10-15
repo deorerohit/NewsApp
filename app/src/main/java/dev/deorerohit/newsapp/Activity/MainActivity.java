@@ -1,16 +1,18 @@
-package dev.deorerohit.newsapp;
+package dev.deorerohit.newsapp.Activity;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import dev.deorerohit.newsapp.Models.Article;
+import dev.deorerohit.newsapp.Models.ResponseModel;
+import dev.deorerohit.newsapp.R;
+import dev.deorerohit.newsapp.Viewmodel.NewsViewModel;
 
 //  * Your API key is: 3ec9808ce7d144cbb979b03e32aec1e9
 
@@ -18,9 +20,8 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     TextView sample_textView;
-    private Retrofit retrofit;
-    //  private NewsAPIInterface newsAPIInterface;
-    private static final String API_KEY = "3ec9808ce7d144cbb979b03e32aec1e9";
+    NewsViewModel newsViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +31,43 @@ public class MainActivity extends AppCompatActivity {
         sample_textView = findViewById(R.id.sample_textView);
 
 
-        final NewsAPIInterface newsAPIInterface = NewsAPIClient.getClient().create(NewsAPIInterface.class);
+        newsViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
 
+        newsViewModel.getAllNewsFromViewModel().observe(this, new Observer<ResponseModel>() {
+            @Override
+            public void onChanged(ResponseModel responseModel) {
+                List<Article> articleList = responseModel.getArticles();
+
+                if (articleList != null) {
+                    for (Article comment : articleList) {
+                        String printIt = "";
+                        printIt += "Author : " + comment.getAuthor() + "\n";
+                        printIt += "Content      : " + comment.getContent() + "\n";
+                        printIt += "Desc    : " + comment.getDescription() + "\n";
+                        printIt += "Published At   : " + comment.getPublishedAt() + "\n";
+                        printIt += "Source    : " + comment.getSource() + "\n\n";
+                        printIt += "Title    : " + comment.getTitle() + "\n\n";
+                        printIt += "URL    : " + comment.getUrl() + "\n\n";
+                        printIt += "URL to image    : " + comment.getUrlToImage() + "\n\n";
+                        sample_textView.append(printIt);
+                    }
+                } else {
+                    sample_textView.setText("Empty data camed");
+                }
+            }
+        });
+
+
+    }
+
+
+}
+
+
+
+
+       /* final NewsAPIInterface newsAPIInterface = NewsAPIClient.getClient().create(NewsAPIInterface.class);
         Call<ResponseModel> call = newsAPIInterface.getLatestNews("in", "general", API_KEY);
-
-
-
-
         call.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
@@ -68,12 +99,5 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseModel> call, Throwable t) {
                 sample_textView.setText(t.getMessage());
             }
-        });
-    }
-
-
-
-
-}
-
+        });*/
    
