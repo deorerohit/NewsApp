@@ -1,17 +1,19 @@
 package dev.deorerohit.newsapp.Activity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import dev.deorerohit.newsapp.Models.Article;
 import dev.deorerohit.newsapp.Models.ResponseModel;
 import dev.deorerohit.newsapp.R;
+import dev.deorerohit.newsapp.RecyclerAdapter;
 import dev.deorerohit.newsapp.Viewmodel.NewsViewModel;
 
 //  * Your API key is: 3ec9808ce7d144cbb979b03e32aec1e9
@@ -19,8 +21,10 @@ import dev.deorerohit.newsapp.Viewmodel.NewsViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView sample_textView;
+
     NewsViewModel newsViewModel;
+    RecyclerAdapter recyclerAdapter;
+    RecyclerView recyclerView;
 
 
     @Override
@@ -28,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sample_textView = findViewById(R.id.sample_textView);
+        recyclerView = findViewById(R.id.recyclerView_layout);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        recyclerAdapter = new RecyclerAdapter(this);
+        recyclerView.setAdapter(recyclerAdapter);
 
 
         newsViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
@@ -37,23 +46,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(ResponseModel responseModel) {
                 List<Article> articleList = responseModel.getArticles();
+                recyclerAdapter.setNewsList(articleList);
 
-                if (articleList != null) {
-                    for (Article comment : articleList) {
-                        String printIt = "";
-                        printIt += "Author : " + comment.getAuthor() + "\n";
-                        printIt += "Content      : " + comment.getContent() + "\n";
-                        printIt += "Desc    : " + comment.getDescription() + "\n";
-                        printIt += "Published At   : " + comment.getPublishedAt() + "\n";
-                        printIt += "Source    : " + comment.getSource() + "\n\n";
-                        printIt += "Title    : " + comment.getTitle() + "\n\n";
-                        printIt += "URL    : " + comment.getUrl() + "\n\n";
-                        printIt += "URL to image    : " + comment.getUrlToImage() + "\n\n";
-                        sample_textView.append(printIt);
-                    }
-                } else {
-                    sample_textView.setText("Empty data camed");
-                }
             }
         });
 

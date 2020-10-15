@@ -30,12 +30,12 @@ public class Repository {
     }
 
 
-    public MutableLiveData<ResponseModel> getAllNewsInRepository(String country, String source) {
+    public MutableLiveData<ResponseModel> getAllNewsInRepository(String country) {
 
         final MutableLiveData<ResponseModel> newsDataToReturn = new MutableLiveData<>();
 
 
-        Call<ResponseModel> call = newsAPIInterface.getLatestNews(country, source, API_KEY);
+        Call<ResponseModel> call = newsAPIInterface.getLatestNews(country, API_KEY);
         call.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {

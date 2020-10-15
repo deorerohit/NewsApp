@@ -9,7 +9,5 @@ public interface NewsAPIInterface {
 
 
     @GET("top-headlines")
-    Call<ResponseModel> getLatestNews(@Query("country") String country, @Query("category") String source, @Query("apiKey") String apiKey);
-
-
+    Call<ResponseModel> getLatestNews(@Query("country") String country, @Query("apiKey") String apiKey);
 }

@@ -19,7 +19,7 @@ public class NewsViewModel extends ViewModel {
 
        // repository = new Repository(application);
         repository = Repository.getInstance();
-        responseModelMutableLiveData = repository.getAllNewsInRepository("in", "general");
+        responseModelMutableLiveData = repository.getAllNewsInRepository("in");
     }
 
     public LiveData<ResponseModel> getAllNewsFromViewModel() {
