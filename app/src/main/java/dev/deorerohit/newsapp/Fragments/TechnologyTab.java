@@ -3,12 +3,22 @@ package dev.deorerohit.newsapp.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import dev.deorerohit.newsapp.Adapters.RecyclerAdapter;
+import dev.deorerohit.newsapp.Models.Article;
+import dev.deorerohit.newsapp.Models.ResponseModel;
 import dev.deorerohit.newsapp.R;
+import dev.deorerohit.newsapp.Viewmodel.NewsViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +31,9 @@ public class TechnologyTab extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,6 +74,26 @@ public class TechnologyTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_technology_tab, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_technology_tab, container, false);
+
+        recyclerView = rootView.findViewById(R.id.recyclerView_layout_technologyTab);
+        recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
+        recyclerView.setHasFixedSize(true);
+        recyclerAdapter = new RecyclerAdapter(rootView.getContext());
+        recyclerView.setAdapter(recyclerAdapter);
+
+        NewsViewModel newsViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
+        newsViewModel.initDataToGetNews("in", "technology");
+
+        newsViewModel.getAllNewsFromViewModel().observe(this, new Observer<ResponseModel>() {
+            @Override
+            public void onChanged(ResponseModel responseModel) {
+                List<Article> articleList = responseModel.getArticles();
+                recyclerAdapter.setNewsList(articleList);
+
+            }
+        });
+
+        return rootView;
     }
 }

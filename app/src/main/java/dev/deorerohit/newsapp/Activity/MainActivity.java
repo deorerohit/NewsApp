@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeViewPager() {
-
         CategoryPageAdapter categoryPageAdapter = new CategoryPageAdapter(this);
         categoryPageAdapter.addFragments(new GeneralTab(), "General");
         categoryPageAdapter.addFragments(new HealthTab(), "Health");
@@ -89,9 +88,7 @@ public class MainActivity extends AppCompatActivity {
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout_mainActivity, viewPager2_mainActivity, true, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-
                 switch (position) {
-
                     case 0 : tab.setText("General");
                              break;
                     case 1 : tab.setText("Health");
