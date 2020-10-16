@@ -1,6 +1,6 @@
-package dev.deorerohit.newsapp;
+package dev.deorerohit.newsapp.Adapters;
 
-import android.icu.text.CaseMap;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +17,14 @@ import java.util.List;
 
 import dev.deorerohit.newsapp.Activity.MainActivity;
 import dev.deorerohit.newsapp.Models.Article;
+import dev.deorerohit.newsapp.R;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHolderClass> {
 
-    List<Article> articleList = new ArrayList<>();
-    MainActivity mainActivity;
+    private List<Article> articleList = new ArrayList<>();
+    private Context mainActivity;
 
-    public RecyclerAdapter(MainActivity mainActivity) {
+    public RecyclerAdapter(Context mainActivity) {
         this.mainActivity = mainActivity;
     }
 

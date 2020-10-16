@@ -7,4 +7,9 @@
         <item name="colorAccent">#89C5BD</item>
     </style>
 
+    <style name="custom_tab_font" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+
 </resources>

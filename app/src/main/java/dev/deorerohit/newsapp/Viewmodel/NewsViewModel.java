@@ -16,10 +16,13 @@ public class NewsViewModel extends ViewModel {
 
 
     public NewsViewModel() {
-
-       // repository = new Repository(application);
+        // repository = new Repository(application);
         repository = Repository.getInstance();
-        responseModelMutableLiveData = repository.getAllNewsInRepository("in");
+       // responseModelMutableLiveData = repository.getAllNewsInRepository("in");
+    }
+
+    public void initDataToGetNews(String country, String category) {
+        responseModelMutableLiveData = repository.getAllNewsInRepository(country,category);
     }
 
     public LiveData<ResponseModel> getAllNewsFromViewModel() {

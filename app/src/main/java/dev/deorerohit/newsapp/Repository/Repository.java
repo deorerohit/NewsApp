@@ -30,12 +30,11 @@ public class Repository {
     }
 
 
-    public MutableLiveData<ResponseModel> getAllNewsInRepository(String country) {
+    public MutableLiveData<ResponseModel> getAllNewsInRepository(String country, String category) {
+
 
         final MutableLiveData<ResponseModel> newsDataToReturn = new MutableLiveData<>();
-
-
-        Call<ResponseModel> call = newsAPIInterface.getLatestNews(country, API_KEY);
+        Call<ResponseModel> call = newsAPIInterface.getLatestNews(country, category, API_KEY);
         call.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
@@ -50,7 +49,7 @@ public class Repository {
 
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
-                   newsDataToReturn.setValue(null);
+                newsDataToReturn.setValue(null);
             }
         });
         return newsDataToReturn;
