@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.ViewFullNewsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/articleImage_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/articleTitle_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_semibold"
+                android:maxLines="4"
+                android:text="This is the title of the nes api did you got that"
+                android:textAlignment="textStart"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:id="@+id/articleAuthor_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toStartOf="@id/articleTime_textView"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_light_italic"
+                    android:maxLines="2"
+                    android:text="This is author"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/articleTime_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/poppins_light_italic"
+                    android:text="22 Mar 2020 12:45"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/articleDesc_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur nobis non repudiandae! Debitis delectus eaque exercitationem, impedit ipsa iste nam omnis quae quaerat quam quibusdam quis reprehenderit tenetur. Adipisci consequuntur dolore eaque fuga illum, iure iusto, odio officiis praesentium quibusdam rem, vero. Alias dolore exercitationem hic, maxime placeat quis veniam!"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/articleContent_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="This is content"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/articleURL_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_light_italic"
+                android:padding="8dp"
+                android:text="Continue reading..."
+                android:textAlignment="viewEnd"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/articleSource_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Source : BBC India"
+            android:textAlignment="center"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

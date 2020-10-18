@@ -1,6 +1,7 @@
 package dev.deorerohit.newsapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,22 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.deorerohit.newsapp.Activity.ViewFullNewsActivity;
 import dev.deorerohit.newsapp.Models.Article;
 import dev.deorerohit.newsapp.R;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHolderClass> {
+
+
+    public static final String IMAGE_KEY = "imageToPass";
+    public static final String TITLE_KEY = "titleToPass";
+    public static final String AUTHOR_KEY = "authorToPass";
+    public static final String TIME_KEY = "timeToPass";
+    public static final String DESC_KEY = "descToPass";
+    public static final String CONTENT_KEY = "contentToPass";
+    public static final String URL_KEY = "urlToPass";
+    public static final String SOURCE_KEY = "sourceToPass";
+
 
     private List<Article> articleList = new ArrayList<>();
     private Context mainActivity;
@@ -93,6 +106,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
             newsFrom_textview = itemView.findViewById(R.id.newsFrom_textview);
             newsTitle_textview = itemView.findViewById(R.id.newsTitle_textview);
             thumbnail_imageview = itemView.findViewById(R.id.thumbnail_imageview);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Article article = articleList.get(getAdapterPosition());
+
+                    Intent intent = new Intent(mainActivity, ViewFullNewsActivity.class);
+                    intent.putExtra(IMAGE_KEY, article.getUrlToImage());
+                    intent.putExtra(TITLE_KEY, article.getTitle());
+                    intent.putExtra(AUTHOR_KEY, article.getAuthor());
+                    intent.putExtra(TIME_KEY, article.getPublishedAt());
+                    intent.putExtra(DESC_KEY, article.getDescription());
+                    intent.putExtra(CONTENT_KEY, article.getContent());
+                    intent.putExtra(URL_KEY,article.getUrl());
+                    //intent.putExtra(SOURCE_KEY, article.getSource());
+                    mainActivity.startActivity(intent);
+
+                }
+            });
         }
 
 
