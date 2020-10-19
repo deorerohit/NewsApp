@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,26 +54,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
 
         holder.newsTitle_textview.setText(article.getTitle());
         holder.newsFrom_textview.setText(article.getAuthor());
-        Glide.with(mainActivity)
+        Picasso.get()
                 .load(R.drawable.empty_image)
-                .thumbnail(0.1f)
-                .override(250, 250)
+                .resizeDimen(R.dimen.image_size, R.dimen.image_size)
+                //.thumbnail(0.1f)
                 .centerCrop()
                 .into(holder.thumbnail_imageview);
 
         if (article.getUrlToImage() != null) {
-            Glide.with(mainActivity)
+            Picasso.get()
                     .load(article.getUrlToImage())
-                    .thumbnail(0.1f)
-                    .override(250, 250)
+                    .resizeDimen(R.dimen.image_size, R.dimen.image_size)
+                //    .thumbnail(0.1f)
                     .centerCrop()
                     .into(holder.thumbnail_imageview);
 
         } else {
-            Glide.with(mainActivity)
+            Picasso.get()
                     .load(R.drawable.news_thumbnail)
-                    .thumbnail(0.1f)
-                    .override(250, 250)
+                    .resizeDimen(R.dimen.image_size, R.dimen.image_size)
+               //     .thumbnail(0.1f)
                     .centerCrop()
                     .into(holder.thumbnail_imageview);
         }

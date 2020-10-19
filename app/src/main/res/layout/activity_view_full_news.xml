@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Activity.ViewFullNewsActivity">
 
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/displaySource_cardView">
 
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
 
             <ImageView
@@ -28,6 +28,7 @@
                 android:id="@+id/articleTitle_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/articleImage_imageView"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
@@ -36,11 +37,14 @@
                 android:maxLines="4"
                 android:text="This is the title of the nes api did you got that"
                 android:textAlignment="textStart"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <RelativeLayout
+                android:id="@+id/horizontal_relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/articleTitle_textView"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp">
@@ -56,6 +60,7 @@
                     android:fontFamily="@font/poppins_light_italic"
                     android:maxLines="2"
                     android:text="This is author"
+                    android:textColor="@color/yellowoccur"
                     android:textSize="14sp" />
 
                 <TextView
@@ -66,6 +71,7 @@
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/poppins_light_italic"
                     android:text="22 Mar 2020 12:45"
+                    android:textColor="@color/yellowoccur"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -73,6 +79,7 @@
                 android:id="@+id/articleDesc_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/horizontal_relativeLayout"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="10dp"
@@ -84,6 +91,7 @@
                 android:id="@+id/articleContent_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/articleDesc_textView"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="10dp"
@@ -95,6 +103,7 @@
                 android:id="@+id/articleURL_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/articleContent_textView"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/poppins_light_italic"
@@ -102,23 +111,31 @@
                 android:text="Continue reading..."
                 android:textAlignment="viewEnd"
                 android:textSize="12sp" />
+        </RelativeLayout>
 
-        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/displaySource_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="8dp"
+        app:cardCornerRadius="8dp">
+
 
         <TextView
             android:id="@+id/articleSource_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/poppins_light"
             android:text="Source : BBC India"
             android:textAlignment="center"
             android:textSize="14sp" />
 
+    </androidx.cardview.widget.CardView>
 
-    </RelativeLayout>
 
-
-</ScrollView>
+</RelativeLayout>

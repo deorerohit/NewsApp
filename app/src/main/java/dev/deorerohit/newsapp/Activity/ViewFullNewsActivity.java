@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
+
+import com.squareup.picasso.Picasso;
 
 import dev.deorerohit.newsapp.Adapters.RecyclerAdapter;
 import dev.deorerohit.newsapp.R;
@@ -63,7 +64,7 @@ public class ViewFullNewsActivity extends AppCompatActivity {
 
 
         // articleSource_textView.setText(intent.getStringExtra(RecyclerAdapter.SOURCE_KEY));
-        Glide.with(getApplicationContext()).load(intent.getStringExtra(RecyclerAdapter.IMAGE_KEY)).into(articleImage_imageView);
+        Picasso.get().load(intent.getStringExtra(RecyclerAdapter.IMAGE_KEY)).into(articleImage_imageView);
 
 
     }
