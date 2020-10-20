@@ -1,5 +1,6 @@
 package dev.deorerohit.newsapp.Fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.tuyenmonkey.mkloader.MKLoader;
 
 import java.util.List;
 
@@ -33,6 +37,9 @@ public class GeneralTab extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
+
+    @SuppressLint("StaticFieldLeak")
+    public static LinearLayout loading_Layout_general;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -76,6 +83,10 @@ public class GeneralTab extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_general_tab, container, false);
+        loading_Layout_general = rootView.findViewById(R.id.loading_Layout_general);
+        loading_Layout_general.setVisibility(View.VISIBLE);
+
+
 
         recyclerView = rootView.findViewById(R.id.recyclerView_layout_generalTab);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
@@ -95,6 +106,7 @@ public class GeneralTab extends Fragment {
             }
         });
 
+       // mkLoader.setVisibility(View.GONE);
         return rootView;
 
     }

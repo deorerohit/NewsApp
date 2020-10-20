@@ -1,9 +1,17 @@
 package dev.deorerohit.newsapp.Repository;
 
+import android.view.View;
+
 import androidx.lifecycle.MutableLiveData;
 
 import dev.deorerohit.newsapp.APIClients.NewsAPIClient;
 import dev.deorerohit.newsapp.APIClients.NewsAPIInterface;
+import dev.deorerohit.newsapp.Fragments.EntertainmentTab;
+import dev.deorerohit.newsapp.Fragments.GeneralTab;
+import dev.deorerohit.newsapp.Fragments.HealthTab;
+import dev.deorerohit.newsapp.Fragments.ScienceTab;
+import dev.deorerohit.newsapp.Fragments.SportsTab;
+import dev.deorerohit.newsapp.Fragments.TechnologyTab;
 import dev.deorerohit.newsapp.Models.ResponseModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,11 +44,32 @@ public class Repository {
         final MutableLiveData<ResponseModel> newsDataToReturn = new MutableLiveData<>();
         Call<ResponseModel> call = newsAPIInterface.getLatestNews(country, category, API_KEY);
         call.enqueue(new Callback<ResponseModel>() {
+
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
 
                 if (response.body().getStatus().equals("ok")) {
                     newsDataToReturn.setValue(response.body());
+
+                    if(GeneralTab.loading_Layout_general != null)
+                    GeneralTab.loading_Layout_general.setVisibility(View.GONE);
+
+                    if(HealthTab.loading_Layout_health != null)
+                    HealthTab.loading_Layout_health.setVisibility(View.GONE);
+
+                    if(ScienceTab.loading_Layout_science != null)
+                    ScienceTab.loading_Layout_science.setVisibility(View.GONE);
+
+                    if(SportsTab.loading_Layout_sports != null)
+                    SportsTab.loading_Layout_sports.setVisibility(View.GONE);
+
+                    if(TechnologyTab.loading_Layout_technology != null)
+                    TechnologyTab.loading_Layout_technology.setVisibility(View.GONE);
+
+                    if(EntertainmentTab.loading_Layout_entertainment != null)
+                    EntertainmentTab.loading_Layout_entertainment.setVisibility(View.GONE);
+
+
                 } else {
                     System.out.println("Error%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 
@@ -50,6 +79,23 @@ public class Repository {
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
                 newsDataToReturn.setValue(null);
+                if(GeneralTab.loading_Layout_general != null)
+                    GeneralTab.loading_Layout_general.setVisibility(View.GONE);
+
+                if(HealthTab.loading_Layout_health != null)
+                    HealthTab.loading_Layout_health.setVisibility(View.GONE);
+
+                if(ScienceTab.loading_Layout_science != null)
+                    ScienceTab.loading_Layout_science.setVisibility(View.GONE);
+
+                if(SportsTab.loading_Layout_sports != null)
+                    SportsTab.loading_Layout_sports.setVisibility(View.GONE);
+
+                if(TechnologyTab.loading_Layout_technology != null)
+                    TechnologyTab.loading_Layout_technology.setVisibility(View.GONE);
+
+                if(EntertainmentTab.loading_Layout_entertainment != null)
+                    EntertainmentTab.loading_Layout_entertainment.setVisibility(View.GONE);
             }
         });
         return newsDataToReturn;

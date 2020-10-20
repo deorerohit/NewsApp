@@ -15,10 +15,10 @@
         android:background="@color/colorPrimaryDark"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar.Bridge"
         app:tabGravity="center"
-        app:tabMaxWidth="0dp"
         app:tabIndicatorColor="@color/yellowoccur"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorHeight="5dp"
+        app:tabMaxWidth="0dp"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/yellowoccur"
         app:tabTextAppearance="@style/custom_tab_font"
@@ -29,6 +29,7 @@
         android:id="@+id/viewPager_mainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 
     <!--
         <androidx.recyclerview.widget.RecyclerView

@@ -1,5 +1,6 @@
 package dev.deorerohit.newsapp.Fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
@@ -34,6 +36,10 @@ public class HealthTab extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
+
+
+    @SuppressLint("StaticFieldLeak")
+    public static LinearLayout loading_Layout_health;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -75,6 +81,9 @@ public class HealthTab extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_health_tab, container, false);
+
+        loading_Layout_health = rootView.findViewById(R.id.loading_Layout_health);
+        loading_Layout_health.setVisibility(View.VISIBLE);
 
         recyclerView = rootView.findViewById(R.id.recyclerView_layout_healthTab);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));

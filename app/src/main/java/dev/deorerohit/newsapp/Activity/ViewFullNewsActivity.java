@@ -1,6 +1,7 @@
 package dev.deorerohit.newsapp.Activity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -8,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 
 import com.squareup.picasso.Picasso;
 
@@ -50,10 +50,11 @@ public class ViewFullNewsActivity extends AppCompatActivity {
         articleContent_textView.setText(intent.getStringExtra(RecyclerAdapter.CONTENT_KEY));
         articleURL_textView.setText("Continue reading...");
 
+
         String dynamicUrl = intent.getStringExtra(RecyclerAdapter.URL_KEY);
 
         String linkedText =
-                String.format("<a href=\"%s\">Continue reading...</a> ", dynamicUrl) ;
+                String.format("<a href=\"%s\">Continue reading...</a> ", dynamicUrl);
 
     /*    String linkedText = "<b>text3:</b>  Text with a " +
                 String.format("<a href=\"%s\">link</a> ", dynamicUrl) +
@@ -64,7 +65,12 @@ public class ViewFullNewsActivity extends AppCompatActivity {
 
 
         // articleSource_textView.setText(intent.getStringExtra(RecyclerAdapter.SOURCE_KEY));
-        Picasso.get().load(intent.getStringExtra(RecyclerAdapter.IMAGE_KEY)).into(articleImage_imageView);
+        System.out.println(articleImage_imageView.getMeasuredWidth()+"************************************************");
+        System.out.println(articleImage_imageView.getMeasuredHeight()+"***************************************////////*********");
+        Picasso.get()
+                .load(intent.getStringExtra(RecyclerAdapter.IMAGE_KEY))
+                .resize(0, 200)
+                .centerCrop().into(articleImage_imageView);
 
 
     }

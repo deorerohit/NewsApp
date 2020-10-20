@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.tuyenmonkey.mkloader.MKLoader;
+
 import dev.deorerohit.newsapp.Models.ResponseModel;
 import dev.deorerohit.newsapp.Repository.Repository;
 
@@ -26,6 +28,7 @@ public class NewsViewModel extends ViewModel {
     }
 
     public LiveData<ResponseModel> getAllNewsFromViewModel() {
+
         return responseModelMutableLiveData;
     }
 }
