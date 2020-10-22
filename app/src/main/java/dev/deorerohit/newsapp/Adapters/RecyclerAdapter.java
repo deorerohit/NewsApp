@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -54,18 +56,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
 
         holder.newsTitle_textview.setText(article.getTitle());
         holder.newsFrom_textview.setText(article.getAuthor());
-        Picasso.get()
-                .load(R.drawable.empty_image)
-                .resizeDimen(R.dimen.image_size, R.dimen.image_size)
-                //.thumbnail(0.1f)
-                .centerCrop()
-                .into(holder.thumbnail_imageview);
 
         if (article.getUrlToImage() != null) {
             Picasso.get()
                     .load(article.getUrlToImage())
                     .resizeDimen(R.dimen.image_size, R.dimen.image_size)
                 //    .thumbnail(0.1f)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .noFade()
+                    .onlyScaleDown()
                     .centerCrop()
                     .into(holder.thumbnail_imageview);
 
@@ -74,6 +74,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
                     .load(R.drawable.news_thumbnail)
                     .resizeDimen(R.dimen.image_size, R.dimen.image_size)
                //     .thumbnail(0.1f)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .noFade()
+                    .onlyScaleDown()
                     .centerCrop()
                     .into(holder.thumbnail_imageview);
         }

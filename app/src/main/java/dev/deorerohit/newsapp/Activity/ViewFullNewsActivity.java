@@ -1,7 +1,6 @@
 package dev.deorerohit.newsapp.Activity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import dev.deorerohit.newsapp.Adapters.RecyclerAdapter;
@@ -65,12 +66,15 @@ public class ViewFullNewsActivity extends AppCompatActivity {
 
 
         // articleSource_textView.setText(intent.getStringExtra(RecyclerAdapter.SOURCE_KEY));
-        System.out.println(articleImage_imageView.getMeasuredWidth()+"************************************************");
-        System.out.println(articleImage_imageView.getMeasuredHeight()+"***************************************////////*********");
+        System.out.println(articleImage_imageView.getMeasuredWidth() + "************************************************");
+        System.out.println(intent.getStringExtra(RecyclerAdapter.IMAGE_KEY) + "***************************************////////*********");
+
         Picasso.get()
                 .load(intent.getStringExtra(RecyclerAdapter.IMAGE_KEY))
-                .resize(0, 200)
-                .centerCrop().into(articleImage_imageView);
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .noFade()
+                .into(articleImage_imageView);
 
 
     }
