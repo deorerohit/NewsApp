@@ -1,6 +1,5 @@
 package dev.deorerohit.newsapp.Fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,11 +21,7 @@ import dev.deorerohit.newsapp.Models.ResponseModel;
 import dev.deorerohit.newsapp.R;
 import dev.deorerohit.newsapp.Viewmodel.NewsViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HealthTab#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class HealthTab extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -38,8 +33,8 @@ public class HealthTab extends Fragment {
     private RecyclerAdapter recyclerAdapter;
 
 
-    @SuppressLint("StaticFieldLeak")
-    public static LinearLayout loading_Layout_health;
+
+    public LinearLayout loading_Layout_general;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -80,12 +75,16 @@ public class HealthTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_health_tab, container, false);
+        /*View rootView = inflater.inflate(R.layout.fragment_health_tab, container, false);
 
         loading_Layout_health = rootView.findViewById(R.id.loading_Layout_health);
-        loading_Layout_health.setVisibility(View.VISIBLE);
+        loading_Layout_health.setVisibility(View.VISIBLE);*/
 
-        recyclerView = rootView.findViewById(R.id.recyclerView_layout_healthTab);
+        View rootView = inflater.inflate(R.layout.fragment_layout, container, false);
+        loading_Layout_general = rootView.findViewById(R.id.loading_Layout_general);
+        loading_Layout_general.setVisibility(View.VISIBLE);
+
+        recyclerView = rootView.findViewById(R.id.recyclerView_layout_generalTab);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerAdapter = new RecyclerAdapter(rootView.getContext());
@@ -99,7 +98,7 @@ public class HealthTab extends Fragment {
             public void onChanged(ResponseModel responseModel) {
                 List<Article> articleList = responseModel.getArticles();
                 recyclerAdapter.setNewsList(articleList);
-
+                loading_Layout_general.setVisibility(View.GONE);
             }
         });
 

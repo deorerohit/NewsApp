@@ -1,6 +1,5 @@
 package dev.deorerohit.newsapp.Fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
-import com.tuyenmonkey.mkloader.MKLoader;
 
 import java.util.List;
 
@@ -38,8 +35,8 @@ public class GeneralTab extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
 
-    @SuppressLint("StaticFieldLeak")
-    public static LinearLayout loading_Layout_general;
+
+    public LinearLayout loading_Layout_general;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,15 +71,12 @@ public class GeneralTab extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_general_tab, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_layout, container, false);
         loading_Layout_general = rootView.findViewById(R.id.loading_Layout_general);
         loading_Layout_general.setVisibility(View.VISIBLE);
 
@@ -102,12 +96,12 @@ public class GeneralTab extends Fragment {
             public void onChanged(ResponseModel responseModel) {
                 List<Article> articleList = responseModel.getArticles();
                 recyclerAdapter.setNewsList(articleList);
+                loading_Layout_general.setVisibility(View.GONE);
 
             }
         });
 
        // mkLoader.setVisibility(View.GONE);
         return rootView;
-
     }
 }

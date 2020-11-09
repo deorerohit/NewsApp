@@ -24,6 +24,7 @@ public class Repository {
     private final NewsAPIInterface newsAPIInterface;
 
 
+
     public Repository() {
         newsAPIInterface = NewsAPIClient.getClient().create(NewsAPIInterface.class);
     }
@@ -51,25 +52,6 @@ public class Repository {
                 if (response.body().getStatus().equals("ok")) {
                     newsDataToReturn.setValue(response.body());
 
-                    if(GeneralTab.loading_Layout_general != null)
-                    GeneralTab.loading_Layout_general.setVisibility(View.GONE);
-
-                    if(HealthTab.loading_Layout_health != null)
-                    HealthTab.loading_Layout_health.setVisibility(View.GONE);
-
-                    if(ScienceTab.loading_Layout_science != null)
-                    ScienceTab.loading_Layout_science.setVisibility(View.GONE);
-
-                    if(SportsTab.loading_Layout_sports != null)
-                    SportsTab.loading_Layout_sports.setVisibility(View.GONE);
-
-                    if(TechnologyTab.loading_Layout_technology != null)
-                    TechnologyTab.loading_Layout_technology.setVisibility(View.GONE);
-
-                    if(EntertainmentTab.loading_Layout_entertainment != null)
-                    EntertainmentTab.loading_Layout_entertainment.setVisibility(View.GONE);
-
-
                 } else {
                     System.out.println("Error%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 
@@ -79,23 +61,7 @@ public class Repository {
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
                 newsDataToReturn.setValue(null);
-                if(GeneralTab.loading_Layout_general != null)
-                    GeneralTab.loading_Layout_general.setVisibility(View.GONE);
 
-                if(HealthTab.loading_Layout_health != null)
-                    HealthTab.loading_Layout_health.setVisibility(View.GONE);
-
-                if(ScienceTab.loading_Layout_science != null)
-                    ScienceTab.loading_Layout_science.setVisibility(View.GONE);
-
-                if(SportsTab.loading_Layout_sports != null)
-                    SportsTab.loading_Layout_sports.setVisibility(View.GONE);
-
-                if(TechnologyTab.loading_Layout_technology != null)
-                    TechnologyTab.loading_Layout_technology.setVisibility(View.GONE);
-
-                if(EntertainmentTab.loading_Layout_entertainment != null)
-                    EntertainmentTab.loading_Layout_entertainment.setVisibility(View.GONE);
             }
         });
         return newsDataToReturn;

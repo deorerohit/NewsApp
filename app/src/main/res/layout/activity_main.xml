@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,7 @@
 
 
     <com.google.android.material.tabs.TabLayout
+        android:layout_alignParentTop="true"
         android:id="@+id/tablayout_mainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,9 +27,43 @@
 
 
     <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@id/tablayout_mainActivity"
         android:id="@+id/viewPager_mainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:id="@+id/no_internet_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster_regular"
+            android:text="Ooops!"
+            android:textAlignment="center"
+            android:textSize="50sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.7"
+            android:fontFamily="@font/righteous_regular"
+            android:text="Slow or no internet connection please check your internet settings"
+            android:textAlignment="center"
+            android:textColor="@color/yellowoccur"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
 
 
     <!--
@@ -37,4 +72,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />-->
 
-</LinearLayout>
+</RelativeLayout>

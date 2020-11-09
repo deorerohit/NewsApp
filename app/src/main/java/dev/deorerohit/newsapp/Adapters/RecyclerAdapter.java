@@ -11,16 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dev.deorerohit.newsapp.Activity.ViewFullNewsActivity;
 import dev.deorerohit.newsapp.Models.Article;
+import dev.deorerohit.newsapp.Models.SourceModel;
 import dev.deorerohit.newsapp.R;
+
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHolderClass> {
 
@@ -58,26 +59,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
         holder.newsFrom_textview.setText(article.getAuthor());
 
         if (article.getUrlToImage() != null) {
-            Picasso.get()
+            Glide.with(mainActivity)
                     .load(article.getUrlToImage())
-                    .resizeDimen(R.dimen.image_size, R.dimen.image_size)
-                //    .thumbnail(0.1f)
-                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .networkPolicy(NetworkPolicy.NO_CACHE)
-                    .noFade()
-                    .onlyScaleDown()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .thumbnail(0.001f)
                     .centerCrop()
                     .into(holder.thumbnail_imageview);
 
         } else {
-            Picasso.get()
+            Glide.with(mainActivity)
                     .load(R.drawable.news_thumbnail)
-                    .resizeDimen(R.dimen.image_size, R.dimen.image_size)
-               //     .thumbnail(0.1f)
-                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .networkPolicy(NetworkPolicy.NO_CACHE)
-                    .noFade()
-                    .onlyScaleDown()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .thumbnail(0.001f)
                     .centerCrop()
                     .into(holder.thumbnail_imageview);
         }
@@ -116,6 +111,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
                 @Override
                 public void onClick(View view) {
                     Article article = articleList.get(getAdapterPosition());
+                    SourceModel sourceModel = article.getSource();
+                    String source = sourceModel.getName();
 
                     Intent intent = new Intent(mainActivity, ViewFullNewsActivity.class);
                     intent.putExtra(IMAGE_KEY, article.getUrlToImage());
@@ -124,8 +121,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
                     intent.putExtra(TIME_KEY, article.getPublishedAt());
                     intent.putExtra(DESC_KEY, article.getDescription());
                     intent.putExtra(CONTENT_KEY, article.getContent());
-                    intent.putExtra(URL_KEY,article.getUrl());
-                    //intent.putExtra(SOURCE_KEY, article.getSource());
+                    intent.putExtra(URL_KEY, article.getUrl());
+                    intent.putExtra(SOURCE_KEY, source);
                     mainActivity.startActivity(intent);
 
                 }

@@ -1,6 +1,10 @@
 package dev.deorerohit.newsapp.Activity;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
@@ -18,6 +22,7 @@ import java.util.List;
 
 import dev.deorerohit.newsapp.Adapters.CategoryPageAdapter;
 import dev.deorerohit.newsapp.Adapters.RecyclerAdapter;
+import dev.deorerohit.newsapp.Animations.ZoomOutPageTransformer;
 import dev.deorerohit.newsapp.Fragments.EntertainmentTab;
 import dev.deorerohit.newsapp.Fragments.GeneralTab;
 import dev.deorerohit.newsapp.Fragments.HealthTab;
@@ -35,11 +40,10 @@ import dev.deorerohit.newsapp.Viewmodel.NewsViewModel;
 public class MainActivity extends AppCompatActivity {
 
 
-    NewsViewModel newsViewModel;
-    RecyclerAdapter recyclerAdapter;
-    RecyclerView recyclerView;
+
     private TabLayout tabLayout_mainActivity;
     private ViewPager2 viewPager2_mainActivity;
+    LinearLayout linearLayout;
 
 
     @Override
@@ -49,8 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout_mainActivity = findViewById(R.id.tablayout_mainActivity);
         viewPager2_mainActivity = findViewById(R.id.viewPager_mainActivity);
+        linearLayout = findViewById(R.id.no_internet_linear_layout);
 
-        initializeViewPager();
+
+        if(isInternetConnected()) {
+            initializeViewPager();
+            linearLayout.setVisibility(View.GONE);
+        }
+        else {
+            linearLayout.setVisibility(View.VISIBLE);
+        }
 
         /* recyclerView = findViewById(R.id.recyclerView_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -74,6 +86,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public boolean isInternetConnected() {
+        boolean isConnected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+
     private void initializeViewPager() {
         CategoryPageAdapter categoryPageAdapter = new CategoryPageAdapter(this);
         categoryPageAdapter.addFragments(new GeneralTab(), "General");
@@ -84,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         categoryPageAdapter.addFragments(new EntertainmentTab(), "Entertainment");
 
         viewPager2_mainActivity.setAdapter(categoryPageAdapter);
+        viewPager2_mainActivity.setPageTransformer(new ZoomOutPageTransformer());
 
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout_mainActivity, viewPager2_mainActivity, true, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override

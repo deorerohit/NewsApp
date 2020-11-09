@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -50,30 +52,20 @@ public class ViewFullNewsActivity extends AppCompatActivity {
         articleTitle_textView.setText(intent.getStringExtra(RecyclerAdapter.TITLE_KEY));
         articleContent_textView.setText(intent.getStringExtra(RecyclerAdapter.CONTENT_KEY));
         articleURL_textView.setText("Continue reading...");
+        articleSource_textView.setText("Source : "+intent.getStringExtra(RecyclerAdapter.SOURCE_KEY));
 
 
         String dynamicUrl = intent.getStringExtra(RecyclerAdapter.URL_KEY);
-
-        String linkedText =
-                String.format("<a href=\"%s\">Continue reading...</a> ", dynamicUrl);
-
-    /*    String linkedText = "<b>text3:</b>  Text with a " +
-                String.format("<a href=\"%s\">link</a> ", dynamicUrl) +
-                "Continue reading...";*/
+        String linkedText = String.format("<a href=\"%s\">Continue reading...</a> ", dynamicUrl);
 
         articleURL_textView.setText(Html.fromHtml(linkedText));
         articleURL_textView.setMovementMethod(LinkMovementMethod.getInstance());
 
 
-        // articleSource_textView.setText(intent.getStringExtra(RecyclerAdapter.SOURCE_KEY));
-        System.out.println(articleImage_imageView.getMeasuredWidth() + "************************************************");
-        System.out.println(intent.getStringExtra(RecyclerAdapter.IMAGE_KEY) + "***************************************////////*********");
-
-        Picasso.get()
+        Glide.with(this)
                 .load(intent.getStringExtra(RecyclerAdapter.IMAGE_KEY))
-                .memoryPolicy(MemoryPolicy.NO_CACHE)
-                .networkPolicy(NetworkPolicy.NO_CACHE)
-                .noFade()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .into(articleImage_imageView);
 
 

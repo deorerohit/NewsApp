@@ -28,7 +28,8 @@ public class NewsViewModel extends ViewModel {
     }
 
     public LiveData<ResponseModel> getAllNewsFromViewModel() {
-
         return responseModelMutableLiveData;
     }
+
+
 }
