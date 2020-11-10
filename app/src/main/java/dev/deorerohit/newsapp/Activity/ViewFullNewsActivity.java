@@ -11,9 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 
 import dev.deorerohit.newsapp.Adapters.RecyclerAdapter;
 import dev.deorerohit.newsapp.R;
@@ -50,9 +47,13 @@ public class ViewFullNewsActivity extends AppCompatActivity {
         articleDesc_textView.setText(intent.getStringExtra(RecyclerAdapter.DESC_KEY));
         articleTime_textView.setText(intent.getStringExtra(RecyclerAdapter.TIME_KEY));
         articleTitle_textView.setText(intent.getStringExtra(RecyclerAdapter.TITLE_KEY));
-        articleContent_textView.setText(intent.getStringExtra(RecyclerAdapter.CONTENT_KEY));
-        articleURL_textView.setText("Continue reading...");
-        articleSource_textView.setText("Source : "+intent.getStringExtra(RecyclerAdapter.SOURCE_KEY));
+        if (intent.getStringExtra(RecyclerAdapter.CONTENT_KEY) != null) {
+            String content = intent.getStringExtra(RecyclerAdapter.CONTENT_KEY);
+            String contentSubstring = content.substring(0, 200);
+            articleContent_textView.setText(contentSubstring);
+        }
+        articleURL_textView.setText(R.string.continue_reading);
+        articleSource_textView.setText("Source : " + intent.getStringExtra(RecyclerAdapter.SOURCE_KEY));
 
 
         String dynamicUrl = intent.getStringExtra(RecyclerAdapter.URL_KEY);

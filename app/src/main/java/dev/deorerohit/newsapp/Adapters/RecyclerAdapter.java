@@ -63,7 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
                     .load(article.getUrlToImage())
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
-                    .thumbnail(0.001f)
+                    .thumbnail(0.1f)
                     .centerCrop()
                     .into(holder.thumbnail_imageview);
 
@@ -72,7 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DataHo
                     .load(R.drawable.news_thumbnail)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
-                    .thumbnail(0.001f)
+                    .thumbnail(0.1f)
                     .centerCrop()
                     .into(holder.thumbnail_imageview);
         }

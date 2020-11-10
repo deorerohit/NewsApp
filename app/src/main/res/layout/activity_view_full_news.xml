@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F0F0F0"
     android:orientation="vertical"
     tools:context=".Activity.ViewFullNewsActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/displaySource_cardView">
+        android:layout_above="@id/displaySource_cardView"
+        android:layout_alignParentTop="true">
 
 
         <RelativeLayout
@@ -23,7 +24,7 @@
                 android:id="@+id/articleImage_imageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/articleTitle_textView"
@@ -85,7 +86,6 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur nobis non repudiandae! Debitis delectus eaque exercitationem, impedit ipsa iste nam omnis quae quaerat quam quibusdam quis reprehenderit tenetur. Adipisci consequuntur dolore eaque fuga illum, iure iusto, odio officiis praesentium quibusdam rem, vero. Alias dolore exercitationem hic, maxime placeat quis veniam!"
                 android:textSize="16sp" />
 
             <TextView
@@ -97,7 +97,6 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="This is content"
                 android:textSize="16sp" />
 
             <TextView
@@ -105,13 +104,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/articleContent_textView"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/poppins_light_italic"
-                android:padding="8dp"
-                android:text="Continue reading..."
-                android:textAlignment="viewEnd"
-                android:textSize="12sp" />
+                android:layout_marginTop="10dp"
+                android:background="#ffffff"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="10dp"
+                android:text="Continue reading"
+                android:textAlignment="center"
+                android:textSize="14sp" />
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -129,14 +128,14 @@
             android:id="@+id/articleSource_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_light"
-            android:text="Source : BBC India"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:fontFamily="@font/poppins_light"
+            android:maxLines="1"
+            android:text="Source : BBC India"
             android:textAlignment="center"
             android:textSize="14sp" />
 
